@@ -1,6 +1,10 @@
-def main():
-    print("Hello from python-booking-mcp-server!")
+from starlette.applications import Starlette
+from starlette.responses import JSONResponse
+from starlette.routing import Route
 
+async def health(request):
+    return JSONResponse({"status": "ok"})
 
-if __name__ == "__main__":
-    main()
+app = Starlette(routes=[
+    Route("/health", health)
+])
